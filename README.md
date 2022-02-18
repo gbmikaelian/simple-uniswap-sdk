@@ -1,7 +1,7 @@
-# simple-uniswap-sdk
+# uniswap-smart-router
 
-[![npm version](https://badge.fury.io/js/simple-uniswap-sdk.svg)](https://badge.fury.io/js/simple-uniswap-sdk)
-![downloads](https://img.shields.io/npm/dw/simple-uniswap-sdk)
+[![npm version](https://badge.fury.io/js/uniswap-smart-router.svg)](https://badge.fury.io/js/uniswap-smart-router)
+![downloads](https://img.shields.io/npm/dw/uniswap-smart-router)
 
 Uniswap SDK which handles the routes automatically for you, changes in trade quotes reactive subscriptions, exposure to formatted easy to understand information, bringing back the best trade quotes automatically, generating transactions for you and much more. All the uniswap logic for you in a simple to easy understand interface to hook straight into your dApp without having to understand how it all works.
 
@@ -50,13 +50,13 @@ p.s I have huge love for unicorns
 ## npm
 
 ```bash
-$ npm install simple-uniswap-sdk
+$ npm install uniswap-smart-router
 ```
 
 ## yarn
 
 ```bash
-$ yarn add simple-uniswap-sdk
+$ yarn add uniswap-smart-router
 ```
 
 # SDK guide
@@ -211,7 +211,7 @@ export class UniswapPairSettings {
 This will use a infura endpoint without you having to pass in a node
 
 ```ts
-import { UniswapPair, ChainId, UniswapVersion, ETH } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId, UniswapVersion, ETH } from 'uniswap-smart-router';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -248,7 +248,7 @@ const uniswapPairFactory = await uniswapPair.createFactory();
 This will use your node you pass in you must pass us the chainId as well, this stops the ethers instance calling pointless `JSONRPC` calls to get the chain id before every `JSONRPC` call.
 
 ```ts
-import { UniswapPair, ChainId, UniswapVersion, ETH } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId, UniswapVersion, ETH } from 'uniswap-smart-router';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -286,7 +286,7 @@ const uniswapPairFactory = await uniswapPair.createFactory();
 This will use your ethereum provider you pass in. This will work with any web3 provider, ethers provider or custom provider. For example when using MetaMask you can pass in the window.ethereum and it work. You must supply the ethereum address and the wallet be approved to use for the dApp and unlocked before passing it in. The uniswap sdk makes those assumptions without them it will not work as MetaMask is not allowed access to your dApp. Any change of network or ethereum address change you will need to handle in your dApp and regenerate the uniswap pair context. Most the time the contract addresses for your tokens are different anyway.
 
 ```ts
-import { UniswapPair, ChainId, UniswapVersion, ETH } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId, UniswapVersion, ETH } from 'uniswap-smart-router';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -557,7 +557,7 @@ export enum UniswapVersion {
 
 ```ts
 import { ethers } from 'ethers';
-import { ChainId, UniswapPair } from 'simple-uniswap-sdk';
+import { ChainId, UniswapPair } from 'uniswap-smart-router';
 
 const etherTradeExample = async () => {
   const uniswapPair = new UniswapPair({
@@ -576,8 +576,8 @@ const etherTradeExample = async () => {
 
   // this example shows erc20 > erc20 but its a simple change for eth > erc20
   // or erc20 > eth example below by using `ETH.MAINNET().contractAddress`
-  // which can be imported within `simple-uniswap-sdk`
-  // aka > import { ETH } from 'simple-uniswap-sdk';
+  // which can be imported within `uniswap-smart-router`
+  // aka > import { ETH } from 'uniswap-smart-router';
 
   //   ETH > ERC20
   // const uniswapPair = new UniswapPair({
@@ -658,7 +658,7 @@ etherTradeExample();
 #### web3 example
 
 ```ts
-import { ChainId, TradeContext, UniswapPair } from 'simple-uniswap-sdk';
+import { ChainId, TradeContext, UniswapPair } from 'uniswap-smart-router';
 import Web3 from 'web3';
 
 const web3TradeExample = async () => {
@@ -678,8 +678,8 @@ const web3TradeExample = async () => {
 
   // this example shows erc20 > erc20 but its a simple change for eth > erc20
   // or erc20 > eth example below by using `ETH.MAINNET().contractAddress`
-  // which can be imported within `simple-uniswap-sdk`
-  // aka > import { ETH } from 'simple-uniswap-sdk';
+  // which can be imported within `uniswap-smart-router`
+  // aka > import { ETH } from 'uniswap-smart-router';
 
   //   ETH > ERC20
   // const uniswapPair = new UniswapPair({
@@ -822,7 +822,7 @@ import {
   TradeContext,
   UniswapPair,
   UniswapPairSettings,
-} from 'simple-uniswap-sdk';
+} from 'uniswap-smart-router';
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
@@ -850,12 +850,12 @@ That's it now you get trades which bring you back the best trades minus the tx c
 #### ERC20 > ERC20 Output example
 
 ```ts
-import { UniswapPair, ChainId, TradeContext } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId, TradeContext } from 'uniswap-smart-router';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
   // if you want to ever swap native erc20 WETH then import WETH
-  // from the simple-uniswap-sdk then use the correct network yours on object
+  // from the uniswap-smart-router then use the correct network yours on object
   // so if i was on mainnet i would use WETH.MAINNET().contractAddress
   fromTokenContractAddress: '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b',
   // the contract address of the token you want to convert TO
@@ -1124,7 +1124,7 @@ trade.destroy();
 #### ETH > ERC20 Output example
 
 ```ts
-import { UniswapPair, ETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
+import { UniswapPair, ETH, ChainId, TradeContext } from 'uniswap-smart-router';
 
 const uniswapPair = new UniswapPair({
   // use the ETH import from the lib, bare in mind you should use the
@@ -2569,7 +2569,7 @@ trade.destroy();
 #### ERC20 > ETH Output example
 
 ```ts
-import { UniswapPair, ETH, ChainId, TradeContext } from 'simple-uniswap-sdk';
+import { UniswapPair, ETH, ChainId, TradeContext } from 'uniswap-smart-router';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -3842,7 +3842,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-smart-router';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -3894,7 +3894,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-smart-router';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -3936,7 +3936,7 @@ get providerUrl(): string | undefined
 #### Usage
 
 ```ts
-import { UniswapPair, ChainId } from 'simple-uniswap-sdk';
+import { UniswapPair, ChainId } from 'uniswap-smart-router';
 
 const uniswapPair = new UniswapPair({
   // the contract address of the token you want to convert FROM
@@ -3985,7 +3985,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'uniswap-smart-router';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4023,7 +4023,7 @@ import {
   TokenFactoryPublic,
   ChainId,
   UniswapVersion,
-} from 'simple-uniswap-sdk';
+} from 'uniswap-smart-router';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4056,7 +4056,7 @@ async balanceOf(ethereumAddress: string): Promise<string>
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'uniswap-smart-router';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4086,7 +4086,7 @@ async totalSupply(): Promise<string>
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'uniswap-smart-router';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4112,7 +4112,7 @@ generateApproveAllowanceData(spender: string, value: string): string
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId } from 'simple-uniswap-sdk';
+import { TokenFactoryPublic, ChainId } from 'uniswap-smart-router';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4157,7 +4157,7 @@ export interface AllowanceAndBalanceOf {
 #### Usage
 
 ```ts
-import { TokenFactoryPublic, ChainId, UniswapVersion } from 'simple-uniswap-sdk';
+import { TokenFactoryPublic, ChainId, UniswapVersion } from 'uniswap-smart-router';
 
 const tokenContractAddress = '0x419D0d8BdD9aF5e606Ae2232ed285Aff190E711b';
 
@@ -4207,7 +4207,7 @@ export interface Token {
 #### Usage
 
 ```ts
-import { TokensFactoryPublic, ChainId } from 'simple-uniswap-sdk';
+import { TokensFactoryPublic, ChainId } from 'uniswap-smart-router';
 
 const tokensFactoryPublic = new TokensFactoryPublic(
   // this can take the same interface as pair context aka
